@@ -12,8 +12,6 @@ window.addEventListener('load', async () => {
   });
   const { results } = await api.json();
 
-  console.log(results);
-
   results.forEach((info) => {
     movielist.innerHTML += `<div class="col-lg-3 mb-3" onclick="alert('영화 id : ${info.id}')" style="cursor:pointer;">
           <div class="card" style="width: 18rem;">
@@ -32,6 +30,16 @@ window.addEventListener('load', async () => {
 });
 
 searchBtn.addEventListener('click', async () => {
+  search();
+});
+
+searchInput.addEventListener('keyup', (e) => {
+  if (e.keyCode === 13) {
+    search();
+  }
+});
+
+const search = async () => {
   const target = searchInput.value;
 
   if (!target) return alert('검색 창에 내용을 입력해 주세요.');
@@ -66,4 +74,4 @@ searchBtn.addEventListener('click', async () => {
           </div>
         </div>`;
   });
-});
+};
