@@ -13,8 +13,8 @@ window.addEventListener('load', async () => {
   const { results } = await api.json();
 
   results.forEach((info) => {
-    movielist.innerHTML += `<div class="col-lg-3 mb-3" onclick="alert('영화 id : ${info.id}')" style="cursor:pointer;">
-          <div class="card" style="width: 18rem;">
+    movielist.innerHTML += `<div class="col-lg-3 mb-3">
+          <div class="card" onclick="alert('영화 id : ${info.id}')" style="width: 18rem; height:680px; cursor:pointer;">
             <img src="https://image.tmdb.org/t/p/original/${info['poster_path']}" class="card-img-top" alt="..." style="height:400px;">
             <div class="card-body">
               <h4 class="card-title">${info.title}</h4>
@@ -60,8 +60,8 @@ const search = async () => {
   movielist.innerHTML = '';
 
   findResult.forEach((info) => {
-    movielist.innerHTML += `<div class="col-lg-3 mb-3" onclick="alert('영화 id : ${info.id}')" style="cursor:pointer;">
-          <div class="card" style="width: 18rem;">
+    movielist.innerHTML += `<div class="col-lg-3 mb-3">
+          <div class="card" onclick="alert('영화 id : ${info.id}')" style="width: 18rem; height:680px; cursor:pointer;">
             <img src="https://image.tmdb.org/t/p/original/${info['poster_path']}" class="card-img-top" alt="..." style="height:400px;">
             <div class="card-body">
               <h4 class="card-title">${info.title}</h4>
