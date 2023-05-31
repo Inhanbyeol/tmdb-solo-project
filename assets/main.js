@@ -64,6 +64,8 @@ const search = async () => {
 //페이지가 모두 로드되었을때 실행되는 이벤트
 // 비동기 처리를 위한 async/await 선언
 window.addEventListener('load', async () => {
+  searchInput.focus();
+
   //getMovie를 반환 (이때 getMovie 함수 내부에 비동기 처리가 되어있는 fetch문이 있기때문에 await으로 처리가 모두 완료될때까지 대기시간을 확보)
   const result = await getMovie();
 
