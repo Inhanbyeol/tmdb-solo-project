@@ -4,6 +4,7 @@ const searchBtn = document.getElementById('searchBtn');
 const movielist = document.getElementById('movielist');
 
 // 비동기 처리를 위한 async/await 선언
+//const변수는 호이스팅이 불가하여 상단에 선언
 const getMovie = async () => {
   //api 변수에 서버로 api를 요청함.
   const api = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', {
@@ -22,6 +23,7 @@ const getMovie = async () => {
 
 // searchInput에서 엔터키 이벤트와 searchBtn 클릭 이벤트를 사용하기 위해 함수 선언
 // 비동기 처리를 위한 async/await 선언
+// const변수는 호이스팅이 불가하여 상단에 선언
 const search = async () => {
   //searchInput객체에 기제된 value 값 받아오기
   const target = searchInput.value;
