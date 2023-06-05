@@ -44,7 +44,7 @@ const search = async () => {
   //검색 결과를 페이지에 출력
   findResult.forEach((info) => {
     movielist.innerHTML += `<div class="col-lg-3 mb-3">
-          <div class="card" onclick="alert('영화 id : ${info.id}')" style="width: 18rem; height:680px; cursor:pointer;">
+          <div class="card" style="width: 18rem; height:680px; cursor:pointer;">
             <img src="https://image.tmdb.org/t/p/original/${info['poster_path']}" class="card-img-top" alt="..." style="height:400px;">
             <div class="card-body">
               <h4 class="card-title">${info.title}</h4>
@@ -70,7 +70,7 @@ window.addEventListener('load', async () => {
   //결과를 페이지에 출력
   result.forEach((info) => {
     movielist.innerHTML += `<div class="col-lg-3 mb-3">
-          <div class="card" onclick="alert('영화 id : ${info.id}')" style="width: 18rem; height:680px; cursor:pointer;">
+          <div class="card" style="width: 18rem; height:680px; cursor:pointer;">
             <img src="https://image.tmdb.org/t/p/original/${info['poster_path']}" class="card-img-top" alt="..." style="height:400px;">
             <div class="card-body">
               <h4 class="card-title">${info.title}</h4>
