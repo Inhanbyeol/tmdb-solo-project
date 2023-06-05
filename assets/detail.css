@@ -1,71 +1,71 @@
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    transition: all 0.35s linear;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.35s linear;
 }
 
 .detail_container {
-    width: 80%;
-    display: grid;
-    grid-template-columns: 700px 1fr;
-    grid-gap: 32px;
-    backdrop-filter: blur(12px) contrast(80%);
-    color: rgb(0, 0, 0);
-    margin: 0px 10%;
+  width: 80%;
+  display: grid;
+  grid-template-columns: 700px 1fr;
+  grid-gap: 32px;
+  backdrop-filter: blur(12px) contrast(80%);
+  color: rgb(0, 0, 0);
+  margin: 0px 10%;
 }
 
 .info {
-    padding-top: 24px;
-    padding-left: 24px;
+  padding-top: 24px;
+  padding-left: 24px;
 }
 
 .poster {
-    width: 700px;
-    height: 100vh;
-    overflow: hidden;
-    align-items: center;
+  width: 700px;
+  height: 100vh;
+  overflow: hidden;
+  align-items: center;
 }
 
 .poster img {
-    width: 100%;
-    object-fit: cover;
-    overflow: hidden;
-    transition: all 0.2s linear;
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  transition: all 0.2s linear;
 }
 
 .poster img:hover {
-    transform: scale(1.03);
+  transform: scale(1.03);
 }
 
 .info > div {
-    margin-top: 32px;
-    margin-bottom: 32px;
-    margin-right: 32px;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  margin-right: 32px;
 }
 
 .movie-title {
-    font-size: 64px;
-    font-weight: bold;
-    color: black;
+  font-size: 64px;
+  font-weight: bold;
+  color: black;
 }
 
 .movie-detail .set {
-    display: inline-block;
-    margin-right: 64px;
+  display: inline-block;
+  margin-right: 64px;
 }
 
 .movie-detail label {
-    font-size: 14px;
-    color: #000000;
-    display: block;
+  font-size: 14px;
+  color: #000000;
+  display: block;
 }
 
 .movie-detail span {
-    font-size: 22px;
+  font-size: 22px;
 }
 
 .movie-description {
-    line-height: 24px;
+  line-height: 24px;
 }
