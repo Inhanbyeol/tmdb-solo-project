@@ -23,20 +23,31 @@ const getMovie = async () => {
 
 // TODO :: html-temp 별도로 저장 ( 수정할때 하나만 하면 되니까..!! )
 const movieHTMLTemp = (info) => {
+  const queryParams = new URLSearchParams();
+  queryParams.set('parameterName', info.id);
+
+  const detailPageURL = `/assets/html/detail-page.html?${queryParams}`;
+
   movielist.innerHTML += `<div class="col-lg-3 mb-3">
-  <div class="card" style="width: 18rem; height:680px; cursor:pointer;">
-    <img src="https://image.tmdb.org/t/p/original/${info['poster_path']}" class="card-img-top" alt="..." style="height:400px;">
-    <div class="card-body">
-      <h4 class="card-title">${info.title}</h4>
-      <div style="text-align:left; font-size:14px;">
-      <p><b>평점</b> : ${info.vote_average}점</p>
-      <span class="mb-3"><b>요약</b></span><br>
-      </div>
-      <p class="card-text" style="overflow: auto; height:100px; font-size:14px; text-align:left;">${info.overview}</p>
+    <div class="card" style="width: 18rem; height: 680px; cursor:pointer;">
+      <a href="${detailPageURL}">
+        <img src="https://image.tmdb.org/t/p/original/${info.poster_path}" class="card-img-top" alt="..." style="height: 400px;">
+        <div class="card-body">
+          <h4 class="card-title">${info.title}</h4>
+          <div style="text-align: left; font-size: 14px;">
+            <p><b>평점</b>: ${info.vote_average}점</p>
+            <span class="mb-3"><b>요약</b></span><br>
+          </div>
+          <p class="card-text" style="overflow: auto; height: 100px; font-size: 14px; text-align: left;">${info.overview}</p>
+        </div>
+      </a>
     </div>
-  </div>
-</div>`;
+  </div>`;
 };
+
+
+
+
 
 // searchInput에서 엔터키 이벤트와 searchBtn 클릭 이벤트를 사용하기 위해 함수 선언
 // 비동기 처리를 위한 async/await 선언
