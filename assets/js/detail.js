@@ -1,9 +1,18 @@
+// TODO :: 사용하기 위해 전역변수로 이동
+const urlParams = new URLSearchParams(window.location.search);
+const movieId = urlParams.get('id');
+
+// 함수: 랜덤숫자 생성
+function getRandomNumber() {
+  const min = 1000;
+  const max = 9999;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 document.addEventListener('DOMContentLoaded', function () {
-  const main = document.getElementById('main');
+  const movieDetailContainer = document.querySelector('.movie-detail-container');
 
   const getMovieDetails = async () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const movieId = urlParams.get('id');
 
     const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=ko`, {
       method: 'GET',
@@ -22,9 +31,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const { id, title, poster_path, vote_average, overview, release_date, runtime } = data;
     const genre1 = data.genres[0].name;
     document.title = `${title}`;
-    // main.style.backgroundImage = `url('https://image.tmdb.org/t/p/w500/${poster_path}')`;
+    // movieDetailContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w500/${poster_path}')`;
 
-    main.innerHTML = `
+
+    document.querySelector('.review-title').innerHTML = `<${title}><br> 리뷰를 작성해주세요. 😁`;
+
+    movieDetailContainer.innerHTML = `
             <div class="detail_container">
                 <div class="poster">
                     <img src="https://image.tmdb.org/t/p/w500/${poster_path}" />
@@ -56,4 +68,78 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   getMovieDetails();
+
+  // 리뷰 불러오기
+  let reviewData = Object.entries(localStorage);
+
+  const reviewRead = () => {
+    reviewData.forEach((review) => {
+      let reviewKey = review[0];
+      review = JSON.parse(review[1]);
+
+      // console.log(review.movieID);
+      // console.log(movieId);
+
+      if (review.movieID == movieId) {
+        let html_temp = `
+        <li class="review-item" data-id="${reviewKey}">
+          <div class="text-wrap">
+            <p class="review-text">
+              ${review.text}
+            </p>
+            <span class="review-writer">${review.writer}</span>
+          </div>
+          <div class="edit-wrap hidden">
+            <div class="input-box">
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <button type="button" class="btn btn-outline-primary btn-sm">수정 완료</button>
+          </div>
+          <div class="btn-group">
+            <button type="button" id="btnEditConfirm" class="btn btn-outline-secondary btn-sm">수정하기</button>
+            <button type="button" class="btn btn-secondary btn-sm">삭제하기</button>
+          </div>
+        </li>
+      `
+        document.querySelector('.review-list').innerHTML += html_temp;
+      }
+
+    })
+  }
+  reviewRead();
 });
+
+//-- 리뷰 --//
+const userReviewText = document.querySelector('#userReviewText');
+const userReviewWriter = document.querySelector('#userReviewWriter');
+const userReviewPassword = document.querySelector('#userReviewPassword');
+
+const btnReviewSubmit = document.querySelector('#btnReviewSubmit');
+
+// 리뷰 등록하기
+btnReviewSubmit.addEventListener('click', () => {
+  const reviewData = {
+    'movieID': movieId,
+    'text': userReviewText.value,
+    'writer': userReviewWriter.value,
+    'password': userReviewPassword.value
+  }
+
+  let reviewNumber;
+  do {
+    reviewNumber = getRandomNumber();
+  } while (localStorage.getItem(`data_${reviewNumber}`) !== null);
+
+  localStorage.setItem(`data_${reviewNumber}`, JSON.stringify(reviewData));
+
+  alert('리뷰가 등록되었습니다.');
+  location.reload();
+});
+
+
+
+// 추가할고임
+// document.querySelector('#btnEditConfirm').addEventListener('click', () => {
+//   const editPasswordValue = prompt('댓글을 작성했을때 입력한 비밀번호를 작성해주세요.')
+//   console.log(editPasswordValue)
+// })
