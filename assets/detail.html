@@ -32,8 +32,32 @@
   <!-- Icons Grid-->
   <main id="main"></main>
 
+  <section class="features-icons bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="row g-3">
+          <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Nickname" id="commentNickname">
+          </div>
+          <div class="col-auto">
+            <input type="password" class="form-control" placeholder="Password" id="commentPassword">
+          </div>
+          <div class="col-auto">
+            <button class="btn btn-primary mb-3" id="commentBtn">Save</button>
+          </div>
+        </div>
+        <div class="g-1 mb-3">
+          <textarea class="form-control" id="commentBox" style="height: 100px" placeholder="Comments"></textarea>
+        </div>
+        <div class="row g-1" id="commentList">
+
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer-->
-  <footer class="footer bg-light">
+  <footer class=" footer bg-light">
     <div class="container">
       <div class="row">
         <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
