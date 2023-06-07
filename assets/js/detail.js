@@ -91,22 +91,65 @@ document.addEventListener('DOMContentLoaded', function () {
           </div>
           <div class="edit-wrap hidden">
             <div class="input-box">
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              <textarea class="form-control editTextarea" rows="3"></textarea>
             </div>
             <button type="button" class="btn btn-outline-primary btn-sm">수정 완료</button>
           </div>
           <div class="btn-group">
-            <button type="button" id="btnEditConfirm" class="btn btn-outline-secondary btn-sm">수정하기</button>
-            <button type="button" class="btn btn-secondary btn-sm">삭제하기</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm btn-edit-confirm">수정하기</button>
+            <button type="button" class="btn btn-secondary btn-sm btn-review-delete">삭제하기</button>
           </div>
         </li>
       `
         document.querySelector('.review-list').innerHTML += html_temp;
       }
 
+
     })
   }
   reviewRead();
+
+  // 리뷰 수정하기
+  const editConfirmButtons = document.querySelectorAll('.btn-edit-confirm');
+  // console.log(editConfirmButtons);
+
+  editConfirmButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const reviewItem = button.closest('.review-item'); // reviewItem 변수를 앞에서 선언하고 초기화합니다.
+      const itemId = reviewItem.dataset.id;
+      const thisLocalStorage = JSON.parse(localStorage.getItem(itemId));
+
+      const promptValue = prompt('댓글을 작성했을 때 입력한 비밀번호를 작성해주세요.');
+
+      if (promptValue === thisLocalStorage.password) {
+        reviewItem.querySelector('.edit-wrap').classList.remove('hidden');
+        reviewItem.querySelector('.btn-group').classList.add('hidden');
+
+        const editContent = reviewItem.querySelector('.editTextarea').value;
+        console.log(editContent);
+
+        thisLocalStorage.text = editContent;
+        localStorage.setItem(itemId, JSON.stringify(thisLocalStorage));
+      } else {
+        alert('올바른 패스워드를 입력해주세요.');
+      }
+    });
+  });
+
+
+  // 리뷰 삭제하기
+  const DeleteButtons = document.querySelectorAll('.btn-review-delete');
+  DeleteButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const promptValue = prompt('비밀번호를 입력해주세요.');
+
+      const reviewItem = button.closest('.review-item');
+      const itemId = reviewItem.dataset.id;
+      const thisLocalStorage = JSON.parse(localStorage.getItem(itemId));
+
+      promptValue === thisLocalStorage.password ? (localStorage.removeItem(itemId), console.log('Element removed from localStorage'), location.reload()) : alert('올바른 패스워드를 입력해주세요.')
+    });
+  });
 });
 
 //-- 리뷰 --//
@@ -136,10 +179,3 @@ btnReviewSubmit.addEventListener('click', () => {
   location.reload();
 });
 
-
-
-// 추가할고임
-// document.querySelector('#btnEditConfirm').addEventListener('click', () => {
-//   const editPasswordValue = prompt('댓글을 작성했을때 입력한 비밀번호를 작성해주세요.')
-//   console.log(editPasswordValue)
-// })
