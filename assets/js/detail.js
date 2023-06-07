@@ -108,6 +108,33 @@ const reviewRead = () => {
 }
 reviewRead();
 
+//-- 리뷰 --//
+const userReviewText = document.querySelector('#userReviewText');
+const userReviewWriter = document.querySelector('#userReviewWriter');
+const userReviewPassword = document.querySelector('#userReviewPassword');
+
+const btnReviewSubmit = document.querySelector('#btnReviewSubmit');
+
+// 리뷰 등록하기
+btnReviewSubmit.addEventListener('click', () => {
+  const reviewData = {
+    'movieID': movieId,
+    'text': userReviewText.value,
+    'writer': userReviewWriter.value,
+    'password': userReviewPassword.value
+  }
+
+  let reviewNumber;
+  do {
+    reviewNumber = getRandomNumber();
+  } while (localStorage.getItem(`data_${reviewNumber}`) !== null);
+
+  localStorage.setItem(`data_${reviewNumber}`, JSON.stringify(reviewData));
+
+  alert('리뷰가 등록되었습니다.');
+  location.reload();
+});
+
 // 리뷰 수정하기
 const editConfirmButtons = document.querySelectorAll('.btn-edit-confirm');
 
@@ -169,31 +196,3 @@ DeleteButtons.forEach(button => {
     promptValue === thisLocalStorage.password ? (localStorage.removeItem(itemId), console.log('Element removed from localStorage'), location.reload()) : alert('올바른 패스워드를 입력해주세요.')
   });
 });
-
-//-- 리뷰 --//
-const userReviewText = document.querySelector('#userReviewText');
-const userReviewWriter = document.querySelector('#userReviewWriter');
-const userReviewPassword = document.querySelector('#userReviewPassword');
-
-const btnReviewSubmit = document.querySelector('#btnReviewSubmit');
-
-// 리뷰 등록하기
-btnReviewSubmit.addEventListener('click', () => {
-  const reviewData = {
-    'movieID': movieId,
-    'text': userReviewText.value,
-    'writer': userReviewWriter.value,
-    'password': userReviewPassword.value
-  }
-
-  let reviewNumber;
-  do {
-    reviewNumber = getRandomNumber();
-  } while (localStorage.getItem(`data_${reviewNumber}`) !== null);
-
-  localStorage.setItem(`data_${reviewNumber}`, JSON.stringify(reviewData));
-
-  alert('리뷰가 등록되었습니다.');
-  location.reload();
-});
-
