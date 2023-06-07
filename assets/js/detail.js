@@ -188,7 +188,7 @@ const renderReplies = (replies, commentIndex) => {
         <strong>${name}</strong>
         <p>${text}</p>
         <input type="password" class="reply-password-input" placeholder="Password" required />
-        <button class="delete-reply" data-comment-index="${commentIndex}" data-reply-index="${replyIndex}">Delete</button>
+        <i class="fas fa-trash delete-reply" data-comment-index="${commentIndex}" data-reply-index="${replyIndex}" style="cursor: pointer"></i>
       </div>
     `;
   });

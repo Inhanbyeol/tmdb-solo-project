@@ -71,10 +71,37 @@
 }
 
 .comment-section {
-  margin: 0px 20%;
+  margin: 20px 20%;
 }
 
-.reply-form,
-.reply-item {
-  margin: 20px 10%;
+.comment-section > * {
+  border-style: 1px solid;
+}
+
+.comment-item > * {
+  border-style: solid;
+}
+
+.reply-form {
+  margin: 0px 10%;
+}
+
+.replies {
+  margin: 0px 10%;
+}
+
+#comment-form {
+  margin: 25px auto 0px auto;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-group-name,
+.form-group-password,
+.form-group-comment {
+  margin-right: 10px;
 }

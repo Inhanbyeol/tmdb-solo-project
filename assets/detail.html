@@ -32,23 +32,19 @@
     <main id="main"></main>
 
     <section class="comment-section">
-      <h2>댓글</h2>
       <div id="comment-list"></div>
       <form id="comment-form">
-        <div class="form-group">
-          <label for="name-input">이름</label>
-          <input type="text" id="name-input" class="form-control" required />
+        <div class="form-group-name" id="form-group-name">
+          <input type="text" id="name-input" class="form-control" placeholder="닉네임" required />
           <!-- required는 필수로 입력해야 되는 필드를 설정  -->
         </div>
-        <div class="form-group">
-          <label for="password-input">비밀번호</label>
-          <input type="password" id="password-input" class="form-control" required />
+        <div class="form-group-password" id="form-group-password">
+          <input type="password" id="password-input" class="form-control" placeholder="비밀번호" required />
         </div>
-        <div class="form-group">
-          <label for="comment-input">댓글</label>
-          <textarea id="comment-input" class="form-control" required></textarea>
+        <div class="form-group-comment" id="form-group-comment">
+          <textarea id="comment-input" class="form-control" placeholder="내용을 입력하세요." required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">댓글 작성</button>
+        <button type="submit" class="btn btn-primary">등 록</button>
       </form>
     </section>
 
