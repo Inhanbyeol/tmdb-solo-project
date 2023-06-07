@@ -1,59 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>The Movie Database | instar</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
-  <title>The Movie Database | instar</title>
-  <!-- Favicon-->
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-  <!-- Bootstrap icons-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"
-    type="text/css" />
-  <!-- Google fonts-->
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
-    type="text/css" />
-  <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/detail.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
-  <link href="css/detail.css" rel="stylesheet" />
-  <link href="css/styles.css" rel="stylesheet" />
-  <script src="js/detail.js" type="module"></script>
-</head>
+    <script src="js/detail.js" type="module"></script>
+  </head>
 
-<body>
-  <nav class="navbar navbar-light bg-light static-top">
-    <div class="container">
-      <a class="navbar-brand" href="./">The Movie Database</a>
-    </div>
-  </nav>
+  <body>
+    <nav class="navbar navbar-light bg-light static-top">
+      <div class="container">
+        <a class="navbar-brand" href="../">The Movie Database</a>
+      </div>
+    </nav>
 
-  <!-- Icons Grid-->
-  <main id="main"></main>
+    <!-- Icons Grid-->
+    <main id="main"></main>
 
-  <!-- Footer-->
-  <footer class="footer bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-          <p class="text-muted small mb-4 mb-lg-0">&copy; instar 2023. All Rights Reserved.</p>
+    <section class="comment-section">
+      <h2>댓글</h2>
+      <div id="comment-list"></div>
+      <form id="comment-form">
+        <div class="form-group">
+          <label for="name-input">이름</label>
+          <input type="text" id="name-input" class="form-control" required />
+          <!-- required는 필수로 입력해야 되는 필드를 설정  -->
         </div>
-        <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
-          <ul class="list-inline mb-0">
-            <li class="list-inline-item">
-              <a href="https://github.com/Inhanbyeol/tmdb-solo-project" target="_blank" style="font-size: 35px"><i
-                  class="bi bi-github"></i></a>
-            </li>
-          </ul>
+        <div class="form-group">
+          <label for="password-input">비밀번호</label>
+          <input type="password" id="password-input" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="comment-input">댓글</label>
+          <textarea id="comment-input" class="form-control" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">댓글 작성</button>
+      </form>
+    </section>
+
+    <!-- Footer-->
+    <footer class="footer bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+            <p class="text-muted small mb-4 mb-lg-0">&copy; instar 2023. All Rights Reserved.</p>
+          </div>
+          <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item">
+                <a href="https://github.com/Inhanbyeol/tmdb-solo-project" target="_blank" style="font-size: 35px"><i class="bi bi-github"></i></a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
-  <!-- Bootstrap core JS-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Study JS-->
-</body>
-
+    <!-- Study JS-->
+  </body>
 </html>

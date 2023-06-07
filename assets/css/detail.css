@@ -69,3 +69,12 @@
 .movie-description {
   line-height: 24px;
 }
+
+.comment-section {
+  margin: 0px 20%;
+}
+
+.reply-form,
+.reply-item {
+  margin: 20px 10%;
+}
