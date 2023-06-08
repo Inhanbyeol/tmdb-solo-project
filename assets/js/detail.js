@@ -124,15 +124,21 @@ btnReviewSubmit.addEventListener('click', () => {
     'password': userReviewPassword.value
   }
 
-  let reviewNumber;
-  do {
-    reviewNumber = getRandomNumber();
-  } while (localStorage.getItem(`data_${reviewNumber}`) !== null);
+  if (reviewData.text === '' || reviewData.writer === '' || reviewData.password === '') {
+    alert('모든 항목을 입력해주세요.')
+  } else {
+    let reviewNumber;
+    do {
+      reviewNumber = getRandomNumber();
+    } while (localStorage.getItem(`data_${reviewNumber}`) !== null);
 
-  localStorage.setItem(`data_${reviewNumber}`, JSON.stringify(reviewData));
+    localStorage.setItem(`data_${reviewNumber}`, JSON.stringify(reviewData));
 
-  alert('리뷰가 등록되었습니다.');
-  location.reload();
+    alert('리뷰가 등록되었습니다.');
+    // location.reload();
+  }
+
+
 });
 
 // 리뷰 수정하기
