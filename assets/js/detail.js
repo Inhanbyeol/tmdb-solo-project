@@ -2,14 +2,14 @@
 const urlParams = new URLSearchParams(window.location.search);
 const movieId = urlParams.get('id');
 
+const movieDetailContainer = document.querySelector('.movie-detail-container');
+
 // 함수: 랜덤숫자 생성
 const getRandomNumber = () => {
   const min = 1000;
   const max = 9999;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
-const movieDetailContainer = document.querySelector('.movie-detail-container');
 
 // 페이지에 맞는 데이터 가져오기
 const getMovieDetails = async () => {
