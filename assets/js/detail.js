@@ -91,8 +91,9 @@ Object.keys(localStorage)
                   <div class="card-body" id="commentcard">
                     <h5 class="card-title">${data.name}</h5>
                     <p class="card-text" style="margin-bottom: 0px;">${data.comment}</p>
-                    <p class="card-text" style="margin-bottom: 0px; margin-top: 10px;"><small class="text-muted">${new Date(data.date).toLocaleString('ko-KR')}</p>
-                    <p class="card-text" style="margin-bottom: 15px; margin-top: 10px;">
+                    <p class="card-text" style="margin-bottom: 0px; margin-top: 10px;">
+                      <small class="text-muted">${new Date(data.date).toLocaleString('ko-KR')}</small>
+                    <p class="card-text" style="display: flex; gap: 5px;margin-bottom: 15px; margin-top: 10px;">
                       <small class="text-danger btn-edit-confirm"
                           style="cursor: pointer;" data-id="${data.key}" onclick="test()"><u>edit</u></small>
                       <small class="text-danger"
@@ -112,7 +113,7 @@ Object.keys(localStorage)
                          <button class="btn btn-danger" id="deleteBtn" style=" margin-right: 5px;">delete</button>
                         <button class="btn btn-primary" id="backBtn">back</button>
                       </div>
-                      </div>
+                    </div>
                     </div>
                   </div>
                
@@ -189,10 +190,10 @@ const editConfirmButtons = document.querySelectorAll('.btn-edit-confirm');
 editConfirmButtons.forEach(button => {
   button.addEventListener('click', () => {
     const reviewItem = button.closest('#commentcard')
-    console.log(reviewItem)
+    // const reviewEditBox = document.querySelector('#editbox')
+    // reviewEditBox.classList.remove('hidden')
     const itemId = button.dataset.id;
     const thisLocalStorage = JSON.parse(localStorage.getItem(itemId));
-    console.log(itemId)
 
     const promptValue = prompt('댓글을 작성했을 때 입력한 비밀번호를 작성해주세요.');
 
@@ -206,11 +207,8 @@ editConfirmButtons.forEach(button => {
 
       let editContent; // 수정한값
       const handleInputChange = () => {
-        // console.log(editContent);
         editContent = editTextarea.value;
         thisLocalStorage.comment = editContent;
-        // console.log(thisLocalStorage.text);
-        // console.log(editContent);
         isContentChanged = true;
       };
 
@@ -224,6 +222,7 @@ editConfirmButtons.forEach(button => {
         } else {
           localStorage.setItem(itemId, JSON.stringify(thisLocalStorage));
         }
+        alert('수정되었습니다!')
         location.reload();
 
       });
