@@ -204,9 +204,10 @@ editConfirmButtons.forEach(button => {
 
       let isContentChanged = false;
 
+      let editContent; // 수정한값
       const handleInputChange = () => {
-        const editContent = editTextarea.value; // 수정한값
         // console.log(editContent);
+        editContent = editTextarea.value;
         thisLocalStorage.comment = editContent;
         // console.log(thisLocalStorage.text);
         // console.log(editContent);
@@ -217,16 +218,14 @@ editConfirmButtons.forEach(button => {
 
       editCompelteButton.addEventListener('click', () => {
 
-        if (!isContentChanged || thisLocalStorage.text.trim() === '') {
+        if (!isContentChanged || editContent === '') {
           alert('수정내용을 입력해주세요.');
           return;
+        } else {
+          localStorage.setItem(itemId, JSON.stringify(thisLocalStorage));
         }
-
-        console.log(thisLocalStorage)
-        // console.log(itemId)
-        alert('리뷰 수정이 완료되었습니다.');
-        localStorage.setItem(itemId, JSON.stringify(thisLocalStorage));
         location.reload();
+
       });
 
     } else {
