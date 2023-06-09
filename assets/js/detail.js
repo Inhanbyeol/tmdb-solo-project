@@ -80,12 +80,6 @@ commentBtn.addEventListener('click', () => {
   window.location.reload();
 });
 
-console.log(
-  Object.keys(localStorage)
-    .map((x) => ({ ...JSON.parse(localStorage.getItem(x)), key: x }))
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
-);
-
 Object.keys(localStorage)
   .map((x) => ({ ...JSON.parse(localStorage.getItem(x)), key: x }))
   .sort((a, b) => new Date(b.date) - new Date(a.date))
