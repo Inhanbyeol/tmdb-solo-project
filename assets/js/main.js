@@ -61,18 +61,12 @@ const search = async () => {
   });
 };
 
-//페이지가 모두 로드되었을때 실행되는 이벤트
-// 비동기 처리를 위한 async/await 선언
-window.addEventListener('load', async () => {
-  searchInput.focus();
-
-  //getMovie를 반환 (이때 getMovie 함수 내부에 비동기 처리가 되어있는 fetch문이 있기때문에 await으로 처리가 모두 완료될때까지 대기시간을 확보)
-  const result = await getMovie();
-
+// 함수 : 템플릿 만들기
+const renderMovieList = (array) => {
   //결과를 페이지에 출력
-  result.forEach((info) => {
+  array.forEach((info) => {
     movielist.innerHTML += `<div class="col-lg-3 mb-3">
-            <div class="card" onclick="showMovieDetails(${info.id})" style="width: 18rem; height:680px; cursor:pointer;">
+            <div class="card" onclick="window.location.href='assets/detail.html?id=${info.id}'" style="width: 18rem; height:680px; cursor:pointer;">
               <img src="https://image.tmdb.org/t/p/original/${info['poster_path']}" class="card-img-top" alt="..." style="height:400px;">
               <div class="card-body">
                 <h4 class="card-title">${info.title}</h4>
@@ -85,6 +79,35 @@ window.addEventListener('load', async () => {
             </div>
           </div>`;
   });
+}
+
+//페이지가 모두 로드되었을때 실행되는 이벤트
+// 비동기 처리를 위한 async/await 선언
+window.addEventListener('load', async () => {
+  searchInput.focus();
+
+  //getMovie를 반환 (이때 getMovie 함수 내부에 비동기 처리가 되어있는 fetch문이 있기때문에 await으로 처리가 모두 완료될때까지 대기시간을 확보)
+  const result = await getMovie();
+  // console.log(result)
+
+  renderMovieList(result)
+});
+
+// TODO :: 셀렉트시 해당하는 결과 보이기
+const movieListSelect = document.querySelector('.movie-list-select');
+
+movieListSelect.addEventListener('change', async () => {
+  const selectedValue = movieListSelect.value;
+  let result = await getMovie();
+  movielist.innerHTML = '';
+
+  if (selectedValue === 'vote_average_high') { // 평점 높은순 
+    result = result.sort((a, b) => b.vote_average - a.vote_average);
+  } else if (selectedValue === 'vote_average_row') { // 평점 낮은순
+    result = result.sort((a, b) => a.vote_average - b.vote_average);
+  }
+
+  renderMovieList(result);
 });
 
 //key event를 통해 search함수를 실행하기 위한 함수
