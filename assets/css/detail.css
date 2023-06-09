@@ -92,16 +92,5 @@
 
 #comment-form {
   margin: 25px auto 0px auto;
-}
-
-.form-group {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.form-group-name,
-.form-group-password,
-.form-group-comment {
-  margin-right: 10px;
+  display: grid;
 }
