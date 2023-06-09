@@ -99,10 +99,6 @@ window.addEventListener('load', async () => {
 });
 
 // TODO :: 셀렉트시 해당하는 결과 보이기
-// 평점 낮은순
-// const voteLow = result.sort((a, b) => a.vote_average - b.vote_average);
-// 평점 높은순
-// const voteHigh = result.sort((a, b) => a.vote_average + b.vote_average);
 const movieListSelect = document.querySelector('.movie-list-select');
 
 movieListSelect.addEventListener('change', async () => {
