@@ -92,9 +92,19 @@ Object.keys(localStorage)
                     <h5 class="card-title">${data.name}</h5>
                     <p class="card-text" style="margin-bottom: 0px;">${data.comment}</p>
                     <p class="card-text" style="margin-bottom: 0px; margin-top: 10px;"><small class="text-muted">${new Date(data.date).toLocaleString('ko-KR')}</p>
-                    <p class="card-text" style="margin-bottom: 0px; margin-top: 10px;"><small class="text-danger"
-                        style="cursor: pointer;" id="del" data-id="${data.key}" onclick="test()"><u>Delete</u></small>
+                    <p class="card-text" style="margin-bottom: 15px; margin-top: 10px;">
+                      <small class="text-danger btn-edit-confirm"
+                          style="cursor: pointer;" data-id="${data.key}" onclick="test()"><u>edit</u></small>
+                      <small class="text-danger"
+                      style="cursor: pointer;" id="del" data-id="${data.key}" onclick="test()"><u>Delete</u></small>
                     </p>
+
+                    <div class="edit-wrap hidden">
+                      <div class="input-box">
+                        <textarea class="form-control editTextarea" rows="3" placeholder="수정할 내용을 입력해주세요."></textarea>
+                      </div>
+                      <button type="button" class="btn btn-outline-primary btn-sm btn-edit-complete">수정 완료</button>
+                    </div>
 
                     <div class="row" style="display:none;" id="delbox">
                       <div class="col-auto" style="display:flex">
@@ -104,9 +114,8 @@ Object.keys(localStorage)
                       </div>
                       </div>
                     </div>
-
                   </div>
-
+               
               </div>
             </div>`;
     }
@@ -172,3 +181,56 @@ class Createcomment {
     this.movieid = movieId;
   }
 }
+
+
+// 리뷰 수정하기
+const editConfirmButtons = document.querySelectorAll('.btn-edit-confirm');
+
+editConfirmButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const reviewItem = button.closest('#commentcard')
+    console.log(reviewItem)
+    const itemId = button.dataset.id;
+    const thisLocalStorage = JSON.parse(localStorage.getItem(itemId));
+    console.log(itemId)
+
+    const promptValue = prompt('댓글을 작성했을 때 입력한 비밀번호를 작성해주세요.');
+
+    if (promptValue === thisLocalStorage.password) {
+      reviewItem.querySelector('.edit-wrap').classList.remove('hidden');
+
+      const editTextarea = reviewItem.querySelector('.editTextarea');
+      const editCompelteButton = reviewItem.querySelector('.btn-edit-complete');
+
+      let isContentChanged = false;
+
+      const handleInputChange = () => {
+        const editContent = editTextarea.value; // 수정한값
+        // console.log(editContent);
+        thisLocalStorage.comment = editContent;
+        // console.log(thisLocalStorage.text);
+        // console.log(editContent);
+        isContentChanged = true;
+      };
+
+      editTextarea.addEventListener('input', handleInputChange);
+
+      editCompelteButton.addEventListener('click', () => {
+
+        if (!isContentChanged || thisLocalStorage.text.trim() === '') {
+          alert('수정내용을 입력해주세요.');
+          return;
+        }
+
+        console.log(thisLocalStorage)
+        // console.log(itemId)
+        alert('리뷰 수정이 완료되었습니다.');
+        localStorage.setItem(itemId, JSON.stringify(thisLocalStorage));
+        location.reload();
+      });
+
+    } else {
+      alert('올바른 패스워드를 입력해주세요.');
+    }
+  });
+});

@@ -12644,3 +12644,7 @@ footer.footer {
   margin-left: auto;
   margin-bottom: 50px;
 }
+
+.hidden {
+  display: none;
+}

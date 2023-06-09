@@ -39,7 +39,7 @@
   transform: scale(1.03);
 }
 
-.info > div {
+.info>div {
   margin-top: 32px;
   margin-bottom: 32px;
   margin-right: 32px;
@@ -68,4 +68,18 @@
 
 .movie-description {
   line-height: 24px;
+}
+
+.edit-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-wrap.hidden {
+  display: none;
+}
+
+.edit-wrap .btn-outline-primary {
+  width: max-content;
+  margin: 10px 0 10px auto;
 }
