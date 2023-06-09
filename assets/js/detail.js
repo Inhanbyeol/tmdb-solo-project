@@ -190,37 +190,35 @@ const editConfirmButtons = document.querySelectorAll('.btn-edit-confirm');
 editConfirmButtons.forEach(button => {
   button.addEventListener('click', () => {
     const reviewItem = button.closest('#commentcard')
-    // const reviewEditBox = document.querySelector('#editbox')
-    // reviewEditBox.classList.remove('hidden')
-    const itemId = button.dataset.id;
+    const itemId = button.dataset.id; // 버튼에 해당하는 로컬스토리지 id값 추출후 사용자가 선택한 데이터를 특정함
     const thisLocalStorage = JSON.parse(localStorage.getItem(itemId));
-
     const promptValue = prompt('댓글을 작성했을 때 입력한 비밀번호를 작성해주세요.');
 
+    // 사용자가 입력한 promptValue값과 로컬스토리지 패스워드 값이 같다면 실행되도록 함.
     if (promptValue === thisLocalStorage.password) {
-      reviewItem.querySelector('.edit-wrap').classList.remove('hidden');
+      reviewItem.querySelector('.edit-wrap').classList.remove('hidden'); // edit-wrap 창 띄움
 
       const editTextarea = reviewItem.querySelector('.editTextarea');
       const editCompelteButton = reviewItem.querySelector('.btn-edit-complete');
 
-      let isContentChanged = false;
+      let isContentChanged = false; // 수정 여부
+      let editContent; // 수정한 값
 
-      let editContent; // 수정한값
-      const handleInputChange = () => {
+      editTextarea.addEventListener('input', () => {
         editContent = editTextarea.value;
-        thisLocalStorage.comment = editContent;
-        isContentChanged = true;
-      };
+        thisLocalStorage.comment = editContent; // 수정한 값 로컬스토리지 comment에 업데이트
+        isContentChanged = true; // 수정 여부 체크
+      });
 
-      editTextarea.addEventListener('input', handleInputChange);
-
+      // 수정완료 버튼 클릭시 이벤트
       editCompelteButton.addEventListener('click', () => {
 
+        // 미입력시 alert 창, 입력 시 로컬스토리지값 변경 후 reload 되도록 함
         if (!isContentChanged || editContent === '') {
           alert('수정내용을 입력해주세요.');
           return;
         } else {
-          localStorage.setItem(itemId, JSON.stringify(thisLocalStorage));
+          localStorage.setItem(itemId, JSON.stringify(thisLocalStorage)); // 로컬스토리지 값 변경
         }
         alert('수정되었습니다!')
         location.reload();
